@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Erica Holdmore, Ph.D.</title>
+<meta name="description" content="Technical Product Lead & Computational Biologist at Dana-Farber Cancer Institute. Building scalable clinical data platforms at the intersection of genomics, AI, and healthcare." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F2EC;
+    --ink: #1A1714;
+    --ink-mid: #4A4540;
+    --ink-light: #8A837A;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --teal-mid: #1D9E75;
+    --warm-border: #DDD8CE;
+    --serif: 'Lora', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--warm-border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 7rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.18;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    color: var(--ink-mid);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.2rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    border: 1px solid var(--teal);
+  }
+  .btn-primary:hover { background: #0d5d47; border-color: #0d5d47; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-mid);
+    border: 1px solid var(--warm-border);
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* avatar placeholder */
+  .hero-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9FE1CB 0%, #1D9E75 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: #fff;
+    flex-shrink: 0;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--warm-border);
+  }
+
+  /* SECTION WRAPPER */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--warm-border);
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text h2 {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p {
+    color: var(--ink-mid);
+    margin-bottom: 1rem;
+    font-size: 0.97rem;
+  }
+
+  .about-sidebar h3 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    background: #fff;
+    border: 1px solid var(--warm-border);
+    color: var(--ink-mid);
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
+
+  /* WORK */
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .work-meta {
+    text-align: right;
+  }
+
+  .work-org {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .work-date {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    margin-top: 0.2rem;
+  }
+
+  .work-content h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .work-content p {
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  .work-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .pill {
+    background: var(--teal-light);
+    color: var(--teal);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* FEATURED PROJECT */
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--warm-border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .project-card h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-card p {
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .metric {
+    background: var(--teal-light);
+    padding: 1rem;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  .metric-num {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--teal);
+    display: block;
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--ink-mid);
+    margin-top: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--warm-border);
+  }
+
+  .stack-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal-mid);
+    flex-shrink: 0;
+  }
+
+  /* PUBLICATIONS */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .pub-item {
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border: 1px solid var(--warm-border);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .pub-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+  }
+
+  .pub-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .pub-title a:hover { color: var(--teal); }
+
+  .pub-meta {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+  }
+
+  /* CONNECT */
+  .connect-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .connect-text h2 {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .connect-text p {
+    color: var(--ink-mid);
+    font-size: 0.97rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--ink-mid);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--teal); }
+
+  .contact-link-icon {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border: 1px solid var(--warm-border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--warm-border);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+  }
+
+  /* DIVIDER accent */
+  .accent-line {
+    width: 40px;
+    height: 2px;
+    background: var(--teal);
+    margin-bottom: 2.5rem;
+  }
+
+  /* responsive */
+  @media (max-width: 680px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 4rem 1.5rem 3rem;
+    }
+    .hero-avatar { display: none; }
+    .about-grid, .work-item, .project-card, .connect-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .work-meta { text-align: left; }
+    .metric-row { grid-template-columns: repeat(3, 1fr); }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 3.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Erica Holdmore</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#publications">Writing</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <p class="hero-eyebrow">Technical Product Lead · Computational Biologist</p>
+    <h1>Building tools that <em>make cancer research</em> move faster</h1>
+    <p class="hero-body">
+      I'm a Ph.D. computational biologist who has spent the last several years moving from pipelines to products — designing clinical data platforms at the intersection of genomics, AI, and patient care at Dana-Farber Cancer Institute.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:eholdridge@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://github.com/eholdmore" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      <a href="https://www.linkedin.com/in/erica-holdmore-49544580/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-avatar">EH</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>I build at the edge of data science, clinical informatics, and product strategy.</h2>
+      <p>
+        My path started in evolutionary ecology — I did my Ph.D. at Yale studying how intraspecific variation affects species coexistence. But my curiosity pulled me toward the computational side, and I found my footing in large-scale genomic data at Dana-Farber, where I now lead both technical strategy and product development for AI-enabled clinical research platforms.
+      </p>
+      <p>
+        What drives me is the belief that the hardest problems in healthcare are often bottlenecks in tooling and data access — not biology. I combine deep bioinformatics expertise (WGS, single-cell RNA-seq, variant calling, multi-omic integration across 50,000+ tumor samples) with product-minded thinking: understanding users, mapping friction points, and shipping systems that real clinicians and researchers actually use.
+      </p>
+      <p>
+        I don't believe in "build it and they will come." I'd rather spend time at the whiteboard with a research nurse figuring out what slows her down than build in a vacuum.
+      </p>
+    </div>
+    <div class="about-sidebar">
+      <h3>Expertise</h3>
+      <div class="tag-list">
+        <span class="tag">Technical Product</span>
+        <span class="tag">Clinical Informatics</span>
+        <span class="tag">Genomics / NGS</span>
+        <span class="tag">EHR Integration</span>
+        <span class="tag">NLP / LLM</span>
+        <span class="tag">Pipeline Architecture</span>
+        <span class="tag">Python · R · SQL</span>
+        <span class="tag">GCP · Docker</span>
+        <span class="tag">Agile / Scrum</span>
+        <span class="tag">WGS · scRNA-seq</span>
+        <span class="tag">Variant Calling</span>
+        <span class="tag">Translational Research</span>
+      </div>
+
+      <h3>Education</h3>
+      <div class="tag-list" style="flex-direction: column; gap: 0.6rem;">
+        <div>
+          <div style="font-size:0.88rem; font-weight:500; color: var(--ink);">Ph.D. Ecology &amp; Evolutionary Biology</div>
+          <div style="font-size:0.8rem; color: var(--ink-light);">Yale University · 2021</div>
+        </div>
+        <div>
+          <div style="font-size:0.88rem; font-weight:500; color: var(--ink);">M.S. Biology</div>
+          <div style="font-size:0.8rem; color: var(--ink-light);">California State University Northridge · 2015</div>
+        </div>
+        <div>
+          <div style="font-size:0.88rem; font-weight:500; color: var(--ink);">B.S. Biological Science, Honors</div>
+          <div style="font-size:0.8rem; color: var(--ink-light);">Florida State University · 2013</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <p class="section-label">Experience</p>
+  <div class="work-list">
+
+    <!-- DFCI Project Lead -->
+    <div class="work-item">
+      <div class="work-meta">
+        <div class="work-org">Dana-Farber Cancer Institute</div>
+        <div class="work-date">Jan 2023 – Present</div>
+      </div>
+      <div class="work-content">
+        <h3>Project Lead, Computational Biologist III</h3>
+        <p>
+          Leading the roadmap and development of AI-enabled clinical research platforms across multiple disease centers — from trial portfolio management tools to genomic data infrastructure. I partner directly with physicians, clinical leadership, and institutional executives to translate complex workflows into scalable, production-ready systems. That includes HIPAA-compliant architectures integrating EHR data, clinical ontologies (ICD-10, OncoTree), and NLP-derived insights, deployed to 100+ monthly users across the institute.
+        </p>
+        <p>
+          On the bioinformatics side, I lead analysis of multi-modal datasets (WGS, sc/snRNA-seq, bulk RNA-seq) across 50,000+ tumor samples, with a focus on variant calling, copy number analysis, structural variants, and co-mutation modeling. Our pipelines have directly supported biomarker discovery and clinical trial design.
+        </p>
+        <div class="work-pills">
+          <span class="pill">Product Strategy</span>
+          <span class="pill">Clinical Informatics</span>
+          <span class="pill">Python / R / SQL</span>
+          <span class="pill">WGS · scRNA-seq</span>
+          <span class="pill">GCP · Docker · WDL</span>
+          <span class="pill">Agile</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Project -->
+    <div style="grid-column: 1 / -1; padding-left: calc(25% + 2rem);">
+      <div class="project-card">
+        <div>
+          <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:0.75rem;">Featured Project</p>
+          <h3>Clinical Trial Portfolio Platform</h3>
+          <p>
+            Took a rapidly-built Streamlit/SQLite prototype — with real institutional adoption — and led its evolution into a production Reflex + PostgreSQL application. The challenge wasn't just the rewrite; it was maintaining user trust while delivering a fundamentally new architecture.
+          </p>
+          <p>
+            I established AI-assisted development workflows (using Claude Code for spec generation and prototyping), built a centralized technical repository in Confluence and Loom, and managed a four-month delivery timeline with biweekly stakeholder updates.
+          </p>
+          <div class="metric-row">
+            <div class="metric">
+              <span class="metric-num">150+</span>
+              <div class="metric-label">Active clinical trials managed</div>
+            </div>
+            <div class="metric">
+              <span class="metric-num">100+</span>
+              <div class="metric-label">Monthly active users</div>
+            </div>
+            <div class="metric">
+              <span class="metric-num">3</span>
+              <div class="metric-label">Disease centers served</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.8rem; font-weight:500; color:var(--ink-light); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;">Technology Stack</p>
+          <div class="stack-grid">
+            <div class="stack-item"><span class="stack-dot"></span>Reflex (frontend)</div>
+            <div class="stack-item"><span class="stack-dot"></span>PostgreSQL</div>
+            <div class="stack-item"><span class="stack-dot"></span>Python services</div>
+            <div class="stack-item"><span class="stack-dot"></span>Docker</div>
+            <div class="stack-item"><span class="stack-dot"></span>GitLab CI/CD</div>
+            <div class="stack-item"><span class="stack-dot"></span>HIPAA-compliant</div>
+          </div>
+          <div style="margin-top:1.75rem; padding-top:1.5rem; border-top:1px solid var(--warm-border);">
+            <p style="font-size:0.8rem; font-weight:500; color:var(--ink-light); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.75rem;">Timeline</p>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <div style="display:flex; gap:0.75rem; align-items:center;">
+                <div style="width:8px; height:8px; border-radius:50%; background:var(--teal); flex-shrink:0;"></div>
+                <span style="font-size:0.82rem; color:var(--ink-mid);">Kick-off &amp; architecture design</span>
+              </div>
+              <div style="display:flex; gap:0.75rem; align-items:center;">
+                <div style="width:8px; height:8px; border-radius:50%; background:var(--teal); flex-shrink:0;"></div>
+                <span style="font-size:0.82rem; color:var(--ink-mid);">Implementation &amp; vertical-slice build</span>
+              </div>
+              <div style="display:flex; gap:0.75rem; align-items:center;">
+                <div style="width:8px; height:8px; border-radius:50%; background:var(--teal); flex-shrink:0;"></div>
+                <span style="font-size:0.82rem; color:var(--ink-mid);">Risk-based testing &amp; UAT</span>
+              </div>
+              <div style="display:flex; gap:0.75rem; align-items:center;">
+                <div style="width:8px; height:8px; border-radius:50%; background:var(--teal); flex-shrink:0;"></div>
+                <span style="font-size:0.82rem; color:var(--ink-mid);">Production launch + 2-week hypercare</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stonehill -->
+    <div class="work-item">
+      <div class="work-meta">
+        <div class="work-org">Stonehill College</div>
+        <div class="work-date">Sep 2022 – Jan 2023</div>
+      </div>
+      <div class="work-content">
+        <h3>Assistant Professor of Bioinformatics and Biology</h3>
+        <p>
+          Built and led an independent computational biology research program from scratch — securing grant funding, designing curriculum, and supervising undergraduate and master's-level research. Taught Applied Bioinformatics and Biological Statistics.
+        </p>
+        <div class="work-pills">
+          <span class="pill">Bioinformatics</span>
+          <span class="pill">Research Program Design</span>
+          <span class="pill">Grant Management</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NSF Postdoc -->
+    <div class="work-item">
+      <div class="work-meta">
+        <div class="work-org">National Science Foundation</div>
+        <div class="work-date">Jan 2021 – Sep 2022</div>
+      </div>
+      <div class="work-content">
+        <h3>Postdoctoral Research Fellow</h3>
+        <p>
+          Secured $207K as principal investigator to develop end-to-end metagenomic pipelines for studying viral diversity in complex microbial communities. Built custom Python-based virus detection tools on HPC environments, published peer-reviewed work, and designed research training programs for college students and K–12 teachers.
+        </p>
+        <div class="work-pills">
+          <span class="pill">Python · HPC</span>
+          <span class="pill">Metagenomics</span>
+          <span class="pill">$207K PI Funding</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <p class="section-label">Selected Publications</p>
+  <div class="pub-list">
+
+    <div class="pub-item">
+      <p class="pub-title">
+        <a href="https://doi.org/10.64898/2026.02.16.706009" target="_blank" rel="noopener">
+          Targeting FGFR signaling to overcome therapeutic resistance and immune evasion in oncogenic PIK3CA-driven serous endometrial cancer
+        </a>
+      </p>
+      <p class="pub-meta">Zhao J. et al. · <em>Nature Communications</em> · February 2026</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">
+        <a href="https://doi.org/10.1016/j.jmoldx.2025.06.005" target="_blank" rel="noopener">
+          Clinical Implementation of Matched Tumor/Germline Sequencing Improves Accuracy of Tumor Genomic Profiling and Therapeutic Recommendations
+        </a>
+      </p>
+      <p class="pub-meta">Manning D.K. et al. · <em>Journal of Molecular Diagnostics</em> · July 2025</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">
+        <a href="https://doi.org/10.1007/s12080-022-00539-9" target="_blank" rel="noopener">
+          Intraspecific variation promotes coexistence under competition for essential resources
+        </a>
+      </p>
+      <p class="pub-meta">Holdridge E.M. &amp; Vasseur D.A. · <em>Theoretical Ecology</em> · July 2022</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">
+        <a href="https://doi.org/10.1111/een.13132" target="_blank" rel="noopener">
+          Cryptic coloration in the green lynx spider (<em>Peucetia viridans</em>)
+        </a>
+      </p>
+      <p class="pub-meta">Rodriguez Z., Holdridge E.M., &amp; Miller T.E. · <em>Ecological Entomology</em> · February 2022</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">
+        <a href="https://doi.org/10.1002/ecs2.1803" target="_blank" rel="noopener">
+          Predator trait evolution alters prey community composition
+        </a>
+      </p>
+      <p class="pub-meta">Holdridge E.M., Flores G.E., &amp; terHorst C.P. · <em>Ecosphere</em> · May 2017</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <p class="section-label">Connect</p>
+  <div class="connect-grid">
+    <div class="connect-text">
+      <h2>Let's build something that matters.</h2>
+      <p>
+        I'm always interested in conversations about clinical data platforms, translational research tools, and technical product leadership in healthcare. Whether you're exploring collaboration, have a role in mind, or just want to talk about the messy problem of getting genomic data into clinicians' hands — reach out.
+      </p>
+      <a href="mailto:eholdridge@gmail.com" class="btn btn-primary" style="display:inline-flex;">Send a note →</a>
+    </div>
+    <div>
+      <div class="contact-links">
+        <a href="mailto:eholdridge@gmail.com" class="contact-link">
+          <div class="contact-link-icon">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          eholdridge@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/erica-holdmore-49544580/" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </div>
+          linkedin.com/in/erica-holdmore
+        </a>
+        <a href="https://github.com/eholdmore" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </div>
+          github.com/eholdmore
+        </a>
+        <a href="https://ericaholdridge.weebly.com/" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+          </div>
+          Previous site (Weebly)
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Erica Holdmore, Ph.D. · Auburn, MA</p>
+</footer>
+
+</body>
+</html>
